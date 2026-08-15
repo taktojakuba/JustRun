@@ -14,5 +14,12 @@ int main(int argc, cahr* argv[])
   // __NV_PRIME_RENDER_OFFLOAD=1
   // __VK_LAYER_NV_optimus=NVIDIA_only
   // __GLX_VENDOR_LIBRARY_NAME=nvidia
-  setenv("MY_VAR", "Hello, World!", 1);
+  setenv("justrun-render", "__NV_PRIME_RENDER_OFFLOAD=1", 1);
+  setenv("justrun-optimus", "__VK_LAYER_NV_optimus=NVIDIA_only
+", 1);
+  setenv("justrun-glx", "__GLX_VENDOR_LIBRARY_NAME=nvidia
+", 1);
+    // replace justrun with argv2 proc
+    execvp(argv[1], &argv[1]);
+    return 0;
 }
