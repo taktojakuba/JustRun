@@ -1,13 +1,16 @@
-all: JustRun
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
 
-JustRun: main.cpp
+all: jr
+
+jr: main.cpp
 	g++ -std=c++17 -O2 -march=native -flto main.cpp -o jr
-install: JustRun
-	cp jr /usr/local/bin/jr
-	chmod +x /usr/local/bin/jr
+
+install: jr
+	install -Dm755 jr $(DESTDIR)$(BINDIR)/jr
 
 uninstall:
-	rm -f /usr/local/bin/jr
+	rm -f $(DESTDIR)$(BINDIR)/jr
 
 clean:
 	rm -f jr
@@ -15,4 +18,3 @@ clean:
 rebuild: clean all
 
 .PHONY: all clean rebuild install uninstall
-
